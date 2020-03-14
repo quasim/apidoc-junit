@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.jdd</groupId>
+		<artifactId>apidoc-junit</artifactId>
+		<version>1.1.1</version>
+	</parent>
+	<artifactId>apidoc-junit-core</artifactId>
+	<name>apidoc-junit-core</name>
+
+	<url>https://github.com/quasim/apidoc-junit</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<jackson.version>2.10.2</jackson.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.sun</groupId>
+			<artifactId>tools</artifactId>
+			<version>${java.version}</version>
+			<scope>system</scope>
+			<optional>true</optional>
+			<systemPath>${java.home}/../lib/tools.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>4.3.24.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.3.24.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.24.RELEASE</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- 支持java8 localDate等新时间类型的序列化 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.datatype</groupId>
+			<artifactId>jackson-datatype-jsr310</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.24.0-GA</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>**/javassist/**/*.java</exclude>
+					</excludes>
+					<excludeRoots>
+						<excludeRoot>${project.basedir}/target/generated-sources/plugin</excludeRoot>
+					</excludeRoots>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
